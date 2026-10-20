@@ -1,5 +1,13 @@
 {
   "version": "7",
   "dialect": "postgresql",
-  "entries": []
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1792473768866,
+      "tag": "0000_create_aics_meet_booking_schema",
+      "breakpoints": true
+    }
+  ]
 }

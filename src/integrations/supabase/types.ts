@@ -14,13 +14,126 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      aics_registrations: {
+        Row: {
+          booking_ref: string
+          created_at: string
+          department: string
+          email: string
+          full_name: string
+          id: string
+          institution: string
+          interests: string[]
+          phone: string
+          session_id: string
+          year_of_study: string
+        }
+        Insert: {
+          booking_ref: string
+          created_at?: string
+          department: string
+          email: string
+          full_name: string
+          id?: string
+          institution: string
+          interests: string[]
+          phone: string
+          session_id: string
+          year_of_study: string
+        }
+        Update: {
+          booking_ref?: string
+          created_at?: string
+          department?: string
+          email?: string
+          full_name?: string
+          id?: string
+          institution?: string
+          interests?: string[]
+          phone?: string
+          session_id?: string
+          year_of_study?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "aics_registrations_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "aics_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      aics_sessions: {
+        Row: {
+          created_at: string
+          description: string
+          id: string
+          is_open: boolean
+          session_key: string
+          starts_at: string | null
+          title: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string
+          id?: string
+          is_open?: boolean
+          session_key: string
+          starts_at?: string | null
+          title: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          id?: string
+          is_open?: boolean
+          session_key?: string
+          starts_at?: string | null
+          title?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      create_aics_registration: {
+        Args: {
+          p_department: string
+          p_email: string
+          p_full_name: string
+          p_institution: string
+          p_interests: string[]
+          p_phone: string
+          p_session_id: string
+          p_year_of_study: string
+        }
+        Returns: string
+      }
+      has_role: { Args: { _role: string; _user_id: string }; Returns: boolean }
     }
     Enums: {
       [_ in never]: never
